@@ -1,13 +1,25 @@
 # Recall Bloom
 
-Make a small flashcard garden and practice at your pace.
+An adaptive flashcard garden for small daily study loops.
 
-## Run it
+## Features
+- SQLite-backed decks and flashcards with edit-independent review history.
+- Due queue using a lightweight spaced-repetition interval schedule.
+- Again, Hard, Good, and Easy grading; study analytics; create and delete cards.
+- Optional AI-generated card drafts, with a no-key demo fallback.
 
-Open `index.html` in a modern browser. No build step or dependency install is required. Your data is stored in this browser with localStorage.
+## Run
+Requires Node.js 24+ (uses the built-in `node:sqlite` module).
 
-## Notes
+```sh
+npm install
+cp .env.example .env
+npm start
+```
 
-- Responsive, dependency-free HTML, CSS, and JavaScript.
-- Data stays on this device; clearing browser storage removes saved entries.
+Visit http://127.0.0.1:8791. Set `OPENAI_API_KEY` in `.env` for generated card drafts. Review AI drafts for accuracy before studying.
 
+## API
+`GET /api/decks`, `GET /api/cards`, `POST /api/cards`, `DELETE /api/cards/:id`, `POST /api/cards/:id/grade`, `GET /api/stats`, `POST /api/generate`.
+
+Stack: Express 5, Node.js, built-in SQLite, responsive browser client.
